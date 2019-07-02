@@ -1,0 +1,12 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,500,800);
+@import "headfoot.css";
+
+
+main{
+padding: auto;
+margin: auto;
+text-align: center;
+background-color: whitesmoke;
+padding: 5% 0% 5% 0%;
+}
+

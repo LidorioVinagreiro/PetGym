@@ -1,0 +1,11 @@
+<table>
+    <% for(var i=0; i < listaAnimais.length; i++) { %>
+       <tr>
+         <td><%= listaAnimais[i].animal_id %></td>
+         <td><%= listaAnimais[i].animal_nome %></td>
+         <td><%= listaAnimais[i].animal_raca %></td>
+         <td><%= listaAnimais[i].animal_peso %></td> 
+         <td><%= listaAnimais[i].animal_adoptado %></td>        
+       </tr>
+    <% } %>
+</table>

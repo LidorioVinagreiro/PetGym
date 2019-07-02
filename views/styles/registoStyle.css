@@ -1,0 +1,44 @@
+@import url("loginStyle.css");
+
+/*Isto é so para simular o photo picker*/
+
+.fotografia {
+  text-align: center;
+  height: 80px;
+  width: 80px;
+  background-color: #f2f2f2;
+  border:2px solid #00b0b3;
+  border-radius: 50%;
+  display: inline-block;
+  margin-bottom: 15px;
+  margin-top: -25px;
+}
+
+ #data {
+    text-align: left;
+    font-family: 'Raleway', Arial, sans-serif;
+    margin:  11px 0 8px 12px;
+    color: rgb(112, 111, 111);
+    font-size: 15px;
+}
+
+#date-picker{
+    background: url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png)  94.2% 53% no-repeat ;
+    background-color: #f2f2f2;
+}
+
+/*Tirar os botoes default*/
+#date-picker::-webkit-inner-spin-button {
+    display: none;
+  }
+  #date-picker ::-webkit-calendar-picker-indicator {
+    opacity: 0;
+  }
+  
+
+/* ::-webkit-input-placeholder { 
+    color: white;
+  }
+  */
+
+  

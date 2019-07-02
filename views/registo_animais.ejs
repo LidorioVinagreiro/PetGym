@@ -1,0 +1,73 @@
+<header>
+    <div id="left-side">
+      <img id="logo" src="images/logo.png" alt="">
+      <h1>PetGym</h1>
+    </div>
+    <div id="right-side">
+      <nav class="mainMenu">
+        <ul class="mainMenuList">
+          <li><a style="text-decoration:none" href="/">Home</a></li>
+          <li><a style="text-decoration:none" href="/users/dashboard">Animais</a></li>
+          <li><a style="text-decoration:none" href="home.html">Quem somos</a></li>
+          <li><a style="text-decoration:none" href="#footer-bottom">Contactos</a></li>
+          <li><a id="login" style="text-decoration:none" href="/users/login">Login</a></li>
+          <li><a id="registar" style="text-decoration:none" href="/users/register">Registar</a></li>
+
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main>
+      <div class="login">
+        <h1 class="text-center mb-3">
+          <i class="fas fa-user-plus"></i> Registo animais
+        </h1>
+        <% include ./partials/messages %>
+        <form action="/registoAnimais" method="POST">
+ 
+          <span class="fotografia"> </span>
+          <!-- Isto é so para simular o photo picker-->
+
+          <div class="form-group">
+            <label for="animal_nome">Nome animal</label>
+            <input
+              type="animal_nome"
+              id="animal_nome"
+              name="animal_nome"
+              class="form-control"
+              placeholder="Insira nome danimal"
+              value="<%= typeof animal_nome != 'undefined' ? animal_nome : '' %>"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="animal_raca">Insira raça</label>
+            <input
+              type="animal_raca"
+              id="animal_raca"
+              name="animal_raca"
+              class="form-control"
+              placeholder="Insira raça"
+              value="<%= typeof animal_raca != 'undefined' ? animal_raca : '' %>"
+            />
+          </div>
+
+          <div class="animal_peso">
+            <label for="animal_peso">Insira peso</label>
+            <input
+              type="number"
+              id="animal_peso"
+              name="animal_peso"
+              class="form-control"
+              placeholder="Insira peso animal"
+              value="<%= typeof animal_peso != 'undefined' ? animal_peso : '' %>"
+            />
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block">
+            Registar animal
+          </button>
+          
+        </form>
+      </div>
+</main>

@@ -1,0 +1,67 @@
+<header>
+    <div id="left-side">
+      <img id="logo" src="images/logo.png" alt="">
+      <h1>PetGym</h1>
+    </div>
+    <div id="right-side">
+      <nav class="mainMenu">
+        <ul class="mainMenuList">
+          <li><a style="text-decoration:none" href="/">Home</a></li>
+          <li><a style="text-decoration:none" href="/users/dashboard">Animais</a></li>
+          <li><a style="text-decoration:none" href="home.html">Quem somos</a></li>
+          <li><a style="text-decoration:none" href="#footer-bottom">Contactos</a></li>
+          <li><a id="login" style="text-decoration:none" href="/users/login">Login</a></li>
+          <li><a id="registar" style="text-decoration:none" href="/users/register">Registar</a></li>
+
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main>
+      <div class="login">
+        <h1 class="text-center mb-3">
+          <i class="fas fa-user-plus"></i> Registo avaliação
+        </h1>
+        <% include ./partials/messages %>
+        <form action="'/listaAnimais/<%=animal.animal_id%>'" method="POST">
+          <div class="form-group">
+            <input
+              type="hidden"
+              id="avaliar_animal_id"
+              name="avaliar_animal_id"
+              class="form-control"
+              value="<%=animal.animal_id%>"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="avaliar_animal_peso">Insira peso</label>
+            <input
+              type="avaliar_animal_peso"
+              id="avaliar_animal_peso"
+              name="avaliar_animal_peso"
+              class="form-control"
+              placeholder="Insira peso"
+              value="<%= typeof avaliar_animal_peso != 'undefined' ? avaliar_animal_peso : '0' %>"
+            />
+          </div>
+
+          <div class="avaliar_data">
+            <label for="avaliar_data">Insira data</label>
+            <input
+              type="date"
+              id="avaliar_data"
+              name="avaliar_data"
+              class="form-control"
+              placeholder="Insira data da avaliação"
+              value="<%= typeof avaliar_data != 'undefined' ? avaliar_data : '01/01/1900' %>"
+            />
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block">
+            Registar avaliação
+          </button>
+          
+        </form>
+      </div>
+</main>

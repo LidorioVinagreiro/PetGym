@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mysql-sfs
+spec:
+  serviceName: mysql-service
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+  updateStrategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+      - name: mysql-container
+        image: mysql-image:v1
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: mysql
+        ports:
+        - containerPort: 3306
+          name: mysql-port
+        volumeMounts:
+        - name: mysql-pv-claim1
+          mountPath: /var/lib/mysql
+  volumeClaimTemplates:
+  - metadata:
+      name: mysql-pv-claim1
+    spec:
+      accessModes: 
+        - ReadWriteOnce
+      resources:
+        requests:
+          storage: 2Gi          
