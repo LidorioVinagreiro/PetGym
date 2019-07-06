@@ -1,0 +1,84 @@
+<header>
+        <div id="left-side">
+          <img id="logo" src="images/logo.png" alt="">
+          <h1>PetGym</h1>
+        </div>
+        <div id="right-side">
+          <nav class="mainMenu">
+            <ul class="mainMenuList">
+              <li><a style="text-decoration:none" href="/">Home</a></li>
+              <li><a style="text-decoration:none" href="/users/dashboard">Animais</a></li>
+              <li><a style="text-decoration:none" href="home.html">Quem somos</a></li>
+              <li><a style="text-decoration:none" href="#footer-bottom">Contactos</a></li>
+              <li><a id="login" style="text-decoration:none" href="/users/login">Login</a></li>
+              <li><a id="registar" style="text-decoration:none" href="/users/register">Registar</a></li>
+    
+            </ul>
+          </nav>
+        </div>
+      </header>
+      <main>
+          <div class="login">
+            <h1 class="text-center mb-3">
+              <i class="fas fa-user-plus"></i> Alterar registo animal
+            </h1>
+            <% include ./partials/messages %>
+            <form action="/Alterar/<%-animal.animal_id>%>" method="POST">
+     
+              <div class="form-group">
+                <label for="animal_nome">Nome animal</label>
+                <input
+                  type="animal_nome"
+                  id="animal_nome"
+                  name="animal_nome"
+                  class="form-control"
+                  placeholder="Insira nome do animal"
+                  value="<%= typeof animal_nome != 'undefined' ? animal_nome : '' %>"
+                />
+              </div>
+    
+              <div class="form-group">
+                <label for="animal_raca">Insira raça</label>
+                <input
+                  type="animal_raca"
+                  id="animal_raca"
+                  name="animal_raca"
+                  class="form-control"
+                  placeholder="Insira raça"
+                  value="<%= typeof animal_raca != 'undefined' ? animal_raca : '' %>"
+                />
+              </div>
+    
+              <div class="form-group">
+                    <label for="animal_data_nasc">Insira data de nascimento</label>
+                    <input
+                      type="date"
+                      id="animal_data_nasc"
+                      name="animal_data_nasc"
+                      class="form-control"
+                      placeholder="Insira data de nascimento"
+                      value="<%= typeof animal_data_nasc != 'undefined' ? animal_data_nasc : '' %>"
+                    />
+                  </div>
+                  <div class="form-group">
+                        <label for="animal_adoptado">Insira data de nascimento</label>
+                        <input
+                          type="checkbox"
+                          id="animal_adoptado"
+                          name="animal_adoptado"
+                          class="form-control"
+                          placeholder="Animal esta adoptado"
+                          value="<%= typeof animal_adoptado != 'undefined' ? animal_adoptado : 0 %>"
+                          <%= animal_adoptado == 1 ? checked :  %>
+                        /> Adoptado
+                      </div>       
+                  
+
+              <button type="submit" class="btn btn-primary btn-block">
+                Alterar animal
+              </button>
+              
+            </form>
+          </div>
+    </main>
+    

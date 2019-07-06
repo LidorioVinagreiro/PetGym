@@ -1,12 +1,17 @@
 <table>
+  <tr>
+    <th>Nome</th>
+    <th>Raça</th>
+    <th>Adoptado</th>
+    <th>Operações</th>
+  </tr>
     <% for(var i=0; i < listaAnimais.length; i++) { %>
        <tr>
          <td><%= listaAnimais[i].animal_id %></td>
          <td><%= listaAnimais[i].animal_nome %></td>
          <td><%= listaAnimais[i].animal_raca %></td>
-         <td><%= listaAnimais[i].animal_peso %></td> 
          <td><%= listaAnimais[i].animal_adoptado %></td>
-         <td><a href="/AvaliarAnimais/<%- listaAniamis[i].animal_id%>" >Avaliar animal</a></td>        
+         <td><a href="/AvaliarAnimais/<%- listaAnimais[i].animal_id%>" >Avaliar animal</a> | <a href="/Alterar/<%- listaAnimais[i].animal_id%>"> Alterar registo animal</a></td>       
        </tr>
     <% } %>
 </table>

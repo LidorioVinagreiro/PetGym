@@ -23,7 +23,7 @@
           <i class="fas fa-user-plus"></i> Registo avaliação
         </h1>
         <% include ./partials/messages %>
-        <form action="/listaAnimais/<%- animal.animal_id%>" method="POST">
+        <form action="/avaliarAnimais/<%- animal.animal_id%>" method="POST">
           <div class="form-group">
             <input
               type="hidden"
@@ -54,7 +54,7 @@
               name="avaliar_data"
               class="form-control"
               placeholder="Insira data da avaliação"
-              value="<%- typeof avaliar_data != 'undefined' ? avaliar_data : '01/01/1900' %>"
+              value="<%- typeof avaliar_data != 'undefined' ? avaliar_data : getDate() %>"
             />
           </div>
 
