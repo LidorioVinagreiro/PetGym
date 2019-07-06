@@ -5,7 +5,8 @@
          <td><%= listaAnimais[i].animal_nome %></td>
          <td><%= listaAnimais[i].animal_raca %></td>
          <td><%= listaAnimais[i].animal_peso %></td> 
-         <td><%= listaAnimais[i].animal_adoptado %></td>        
+         <td><%= listaAnimais[i].animal_adoptado %></td>
+         <td><a href="/AvaliarAnimais/<%- listaAniamis[i].animal_id%>" >Avaliar animal</a></td>        
        </tr>
     <% } %>
 </table>

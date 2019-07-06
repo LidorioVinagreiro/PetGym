@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: myapp
-          image: app:vteste
+          image: myapp:v1
           imagePullPolicy: IfNotPresent
           ports:
           - containerPort: 8080

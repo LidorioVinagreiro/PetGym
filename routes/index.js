@@ -50,7 +50,7 @@ const { animal_nome,animal_peso,animal_raca} = req.body;
 });
 
 //get da pagina da lista de animais
-router.get('/listaAnimais,',ensureAuthenticated,(req,res)=>{
+router.get('/listaAnimais',ensureAuthenticated,(req,res)=>{
   dbpool.getConnection(function(err,connection){
     if(err){
       console.log('ERRO NO GET CONNECTION /listaAnimais GET');
@@ -74,7 +74,7 @@ router.get('/listaAnimais,',ensureAuthenticated,(req,res)=>{
 });
 });
 
-router.get('/listaAnimais/:id',ensureAuthenticated,(req,res)=>{
+router.get('/avaliarAnimais/:id',ensureAuthenticated,(req,res)=>{
   dbpool.getConnection(function(err,connection){
     if(err){
       console.log('ERRO NO GET CONNECTION /LISTAANIMAIS/ID GET');
@@ -97,7 +97,7 @@ router.get('/listaAnimais/:id',ensureAuthenticated,(req,res)=>{
   });
 });
 
-router.post('/listaAnimais/:id', ensureAuthenticated, (req,res)=>{
+router.post('/avaliarAnimais/:id', ensureAuthenticated, (req,res)=>{
   const { avaliar_animal_id,avaliar_animal_peso,avaliar_data} = req.body;
   
   // if errors > 1 falta verificar dados
