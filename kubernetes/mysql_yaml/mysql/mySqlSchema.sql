@@ -1,6 +1,6 @@
-CREATE DATABASE QuintaMiao;
+CREATE DATABASE PetGym;
 
-USE QuintaMiao
+USE PetGym
 
 CREATE Table IF NOT EXISTS Animais (
 animal_id int(11) NOT NULL AUTO_INCREMENT,

@@ -28,7 +28,7 @@ getPool: function (){
     if(pool) return pool;
     pool = mysql.createPool({
         host: "mysql-service",
-        database: "QuintaMiao",
+        database: "PetGym",
         user:"root",
         password: "mysql",
         port: 3306
