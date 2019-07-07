@@ -10,8 +10,8 @@ router.get('/', forwardAuthenticated, (req, res) => res.render('welcome'));
 // após o render existe um object {user: req.user}
 //está a ser passado para a próxima página
 //é usado dentro da view dashboard
-router.get('/dashboard', ensureAuthenticated, (req, res) =>
-  res.render('dashboard', {
+router.get('/initial', ensureAuthenticated, (req, res) =>
+  res.render('initial', {
     user: req.user
   })
 );
@@ -180,8 +180,10 @@ router.post('/Alterar', ensureAuthenticated, (req, res) => {
   //else
   //mysql.insert.Animais
   dbpool.getConnection(function (err, connection) {
-    if (err)
+    if (err){
       console.log('ERRO NO GET CONNECTION /ALTERAR/:id POST');
+      res.render('Dashboard')
+    }
     animal_adoptado => animal_adoptado == 1 ? true : false;
     var sql = 'UPDATE Animais SET animal_nome = ?, animal_raca = ?, animal_adoptado=?,animal_data_nasc=? WHERE animal_id=?';
     var campos = [animal_nome, animal_raca, animal_adoptado, animal_data_nasc, animal_id];

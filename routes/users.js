@@ -28,15 +28,15 @@ router.post('/register', (req, res) => {
   let errors = [];
 
   if (!name || !email || !password || !password2) {
-    errors.push({ msg: 'Please enter all fields' });
+    errors.push({ msg: 'Insira todos os campos' });
   }
 
   if (password != password2) {
-    errors.push({ msg: 'Passwords do not match' });
+    errors.push({ msg: 'Password incorrecta' });
   }
 
   if (password.length < 6) {
-    errors.push({ msg: 'Password must be at least 6 characters' });
+    errors.push({ msg: 'A password tem que ter no minimo 6 caracteres' });
   }
 
   if (errors.length > 0) {
@@ -50,7 +50,7 @@ router.post('/register', (req, res) => {
   } else {
     User.findOne({ email: email }).then(user => {
       if (user) {
-        errors.push({ msg: 'Email already exists' });
+        errors.push({ msg: 'O Email já está registado' });
         res.render('register', {
           errors,
           name,
@@ -76,7 +76,7 @@ router.post('/register', (req, res) => {
               .then(user => {
                 req.flash(
                   'success_msg',
-                  'You are now registered and can log in'
+                  'Já está registado, pode fazer o log in'
                 );
                 res.redirect('/users/login');
               })
@@ -91,7 +91,7 @@ router.post('/register', (req, res) => {
 // Login
 router.post('/login', (req, res, next) => {
   passport.authenticate('local', {
-    successRedirect: '/dashboard',
+    successRedirect: '/initial',
     failureRedirect: '/users/login',
     failureFlash: true
   })(req, res, next);
@@ -100,7 +100,7 @@ router.post('/login', (req, res, next) => {
 // Logout
 router.get('/logout', (req, res) => {
   req.logout();
-  req.flash('success_msg', 'You are logged out');
+  req.flash('success_msg', 'Log out efectuado');
   res.redirect('/users/login');
 });
 
