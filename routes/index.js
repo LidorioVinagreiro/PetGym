@@ -200,4 +200,32 @@ router.post('/Alterar', ensureAuthenticated, (req, res) => {
   });
 });
 
+//get da pagina da lista de animais
+router.post('/pesquisa', ensureAuthenticated, (req, res) => {
+  const { texto_pesquisa } = req.body;
+  dbpool.getConnection(function (err, connection) {
+    if (err) {
+      console.log('ERRO NO GET CONNECTION /pesquisa POST');
+      connection.release();
+      //falta adicionar pagina padrao e erros 
+    }
+
+    //cSQL INJECTION PROBLEM 
+    var camp = "'%?%'";
+    var sql = 'SELECT * FROM Animais WHERE animal_nome LIKE '+camp;
+
+    connection.query(sql, function (err, rows) {
+      if (err) {
+        connection.release();
+        console.log('ERRO NA QUERY pesquisa GET')
+      }
+      connection.release();
+      //ou return?
+      res.render('listaAnimais', {
+        listaAnimais: rows
+      });
+    });
+  });
+});
+
 module.exports = router;
