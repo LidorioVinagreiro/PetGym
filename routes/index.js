@@ -165,14 +165,14 @@ router.get('/Alterar/:id',ensureAuthenticated,(req,res)=>{
       console.log('ERRO NA QUERY LISTA ANIMAIS ID GET');
     }
       connection.release();
-      res.render('Alterar',{
+      res.render('alterarAnimal',{
                 animal: rows[0]
       });
     });
   });
 });
 
-router.post('/Alterar/:id', ensureAuthenticated, (req,res)=>{
+router.post('/Alterar', ensureAuthenticated, (req,res)=>{
   const { animal_id,animal_nome,animal_raca,animal_adoptado,animal_data_nasc } = req.body;
   
   // if errors > 1 falta verificar dados
@@ -182,14 +182,14 @@ router.post('/Alterar/:id', ensureAuthenticated, (req,res)=>{
     dbpool.getConnection(function(err,connection){
       if(err)
         console.log('ERRO NO GET CONNECTION /ALTERAR/:id POST');
-      
+      animal_adoptado => animal_adoptado == 1 ? true : false;
       var sql = 'UPDATE Animais SET animal_nome = ?, animal_raca = ?, animal_adoptado=?,animal_data_nasc=? WHERE animal_id=?';
       var campos = [animal_nome,animal_raca,animal_adoptado,animal_data_nasc,animal_id];
   
       connection.query(sql,campos,function(err,rows){
         if(err){
           connection.release();
-          console.log('ERRO NA QUERY ALTERAR ANIMAIS POST')
+          console.log('ERRO NA QUERY ALTERAR ANIMAIS POST');
         }
           connection.release();
           //no redirect mandamos uma mensagem de registo?

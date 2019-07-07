@@ -7,7 +7,7 @@ animal_id int(11) NOT NULL AUTO_INCREMENT,
 animal_nome varchar(100) NOT NULL,
 animal_raca varchar(100) NOT NULL DEFAULT 'Rafeiro',
 animal_adoptado BOOLEAN null,
-animal_data_nasc DATE NULL
+animal_data_nasc DATE NULL,
 PRIMARY KEY (animal_id)
 );
 
