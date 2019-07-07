@@ -80,7 +80,7 @@
                   name="animal_adoptado"
                   class="form-control"
                   placeholder="Animal adoptado"
-                  value="<%- typeof animal.animal_adoptado == 'undefined' ? animal.animal_adoptado : '' %>"
+                  value="<%- typeof animal.animal_adoptado == 'undefined' ? animal.animal_adoptado : '0' %>"
 		  <% if(animal.animal_adoptado!='undefined' && animal.animal_adoptado ==1 )  { %> checked <% } else {%> <%} %> />
               </div>
   
@@ -95,3 +95,15 @@
           </div>
     </main>
     
+<script>
+
+var checkbox = document.getElementById('animal_adoptado');
+  checkbox.onclick = function (){
+    if(checkbox.checked){
+      checkbox.value=1;
+    }else{
+      checkbox.value=0;
+    }
+}
+
+</script>
