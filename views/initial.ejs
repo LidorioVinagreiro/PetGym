@@ -6,9 +6,11 @@
   <div id="right-side">
       <nav class="mainMenu">
         <ul class="mainMenuList">
-          <li><a style="text-decoration:none" href="/users/initial">Home</a></li>
-          <li><a style="text-decoration:none" href="/users/listaAnimais">Animais</a></li>
-          <li><a style="text-decoration:none" href="/users/listaAvaliacoes">Avaliações</a></li>
+          <li><a style="text-decoration:none" href="/">Home</a></li>
+          <li><a style="text-decoration:none" href="/listaAnimais">Animais</a></li>
+          <li><a style="text-decoration:none" href="/listaAvaliacoes">Lista Avaliações</a></li>
+	  <li><a style="text-decoration:none" href="/registoAnimais">Registo Animais</a></li>
+	  <li><a style="text-decoration:none" href="/users/logout">Log out</a></li>
           <li><a style="text-decoration:none" href="#footer-bottom">Contactos</a></li>
         </ul>
       </nav>
@@ -17,6 +19,4 @@
 <main>
   <h1 class="mt-4">Página inicial</h1>
   <p class="lead mb-3">Welcome <%= user.name %></p>
-  <a href="/registoAnimais" class="btn btn-secondary">Registo</a>
-  <a href="/users/logout" class="btn btn-secondary">Logout</a>
 </main>
