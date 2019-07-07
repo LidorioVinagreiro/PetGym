@@ -18,65 +18,65 @@ router.get('/dashboard', ensureAuthenticated, (req, res) =>
 
 //falta o nome da pagina <nome>
 //só o get da pagina de registo de um animal
-router.get('/registoAnimais', ensureAuthenticated, (req,res)=>
-res.render('registo_animais')
+router.get('/registoAnimais', ensureAuthenticated, (req, res) =>
+  res.render('registo_animais')
 );
 
-router.post('/registoAnimais', ensureAuthenticated, (req,res)=>{
-const { animal_nome,animal_raca} = req.body;
+router.post('/registoAnimais', ensureAuthenticated, (req, res) => {
+  const { animal_nome, animal_raca } = req.body;
 
-// if errors > 1 falta verificar dados
+  // if errors > 1 falta verificar dados
 
-//else
+  //else
   //mysql.insert.Animais
-  dbpool.getConnection(function(err,connection){
-    if(err)
+  dbpool.getConnection(function (err, connection) {
+    if (err)
       console.log('ERRO NO GET CONNECTION /registoAnimais POST');
-    
-    var sql = 'INSERT INTO Animais (animal_nome,animal_raca) VALUES (?,?)';
-    var campos = [animal_nome,animal_raca];
 
-    connection.query(sql,campos,function(err,rows){
-      if(err){
+    var sql = 'INSERT INTO Animais (animal_nome,animal_raca) VALUES (?,?)';
+    var campos = [animal_nome, animal_raca];
+
+    connection.query(sql, campos, function (err, rows) {
+      if (err) {
         connection.release();
         console.log('ERRO NA QUERY REGISTO ANIMAIS POST')
       }
-        connection.release();
-        //no redirect mandamos uma mensagem de registo?
-        res.redirect('/registoAnimais');
+      connection.release();
+      //no redirect mandamos uma mensagem de registo?
+      res.redirect('/registoAnimais');
     });
-});
+  });
 
 });
 
 //get da pagina da lista de animais
-router.get('/listaAnimais',ensureAuthenticated,(req,res)=>{
-  dbpool.getConnection(function(err,connection){
-    if(err){
+router.get('/listaAnimais', ensureAuthenticated, (req, res) => {
+  dbpool.getConnection(function (err, connection) {
+    if (err) {
       console.log('ERRO NO GET CONNECTION /listaAnimais GET');
-      connection.release(); 
+      connection.release();
       //falta adicionar pagina padrao e erros 
     }
-    
+
     var sql = 'SELECT * FROM Animais';
 
-    connection.query(sql,function(err,rows){
-      if(err){
+    connection.query(sql, function (err, rows) {
+      if (err) {
         connection.release();
         console.log('ERRO NA QUERY Lista ANIMAIS GET')
       }
-        connection.release();
-        //ou return?
-        res.render('listaAnimais',{
-            listaAnimais: rows
-        });
+      connection.release();
+      //ou return?
+      res.render('listaAnimais', {
+        listaAnimais: rows
+      });
     });
-});
+  });
 });
 
-router.get('/avaliarAnimais/:id',ensureAuthenticated,(req,res)=>{
-  dbpool.getConnection(function(err,connection){
-    if(err){
+router.get('/avaliarAnimais/:id', ensureAuthenticated, (req, res) => {
+  dbpool.getConnection(function (err, connection) {
+    if (err) {
       console.log('ERRO NO GET CONNECTION /LISTAANIMAIS/ID GET');
       connection.release();
       //falta adicionar pagina padrao e erros
@@ -84,74 +84,74 @@ router.get('/avaliarAnimais/:id',ensureAuthenticated,(req,res)=>{
 
     var sql = 'SELECT * FROM Animais WHERE animal_id=?';
 
-    connection.query(sql,[req.params.id],function(err,rows,fields){
-    if(err){
+    connection.query(sql, [req.params.id], function (err, rows, fields) {
+      if (err) {
+        connection.release();
+        console.log('ERRO NA QUERY LISTA ANIMAIS ID GET');
+      }
       connection.release();
-      console.log('ERRO NA QUERY LISTA ANIMAIS ID GET');
-    }
-      connection.release();
-      res.render('avaliarAnimal',{
-                animal: rows[0]
+      res.render('avaliarAnimal', {
+        animal: rows[0]
       });
     });
   });
 });
 
-router.post('/avaliarAnimais/:id', ensureAuthenticated, (req,res)=>{
-  const { avaliar_animal_id,avaliar_animal_peso,avaliar_data } = req.body;
-  
-  // if errors > 1 falta verificar dados
-  
-  //else
-    //mysql.insert.Animais
-    dbpool.getConnection(function(err,connection){
-      if(err)
-        console.log('ERRO NO GET CONNECTION /avaliarAnimais/:id POST');
-      
-      var sql = 'INSERT INTO AvaliarAnimais (avaliar_animal_id,avaliar_animal_peso,avaliar_data) VALUES (?,?,?)';
-      var campos = [avaliar_animal_id,avaliar_animal_peso,avaliar_data];
-  
-      connection.query(sql,campos,function(err,rows){
-        if(err){
-          connection.release();
-          console.log('ERRO NA QUERY REGISTO AVALIAR ANIMAIS POST')
-        }
-          connection.release();
-          //no redirect mandamos uma mensagem de registo?
-          res.redirect('/listaAnimais');
-      });
-  });
-  });
+router.post('/avaliarAnimais/:id', ensureAuthenticated, (req, res) => {
+  const { avaliar_animal_id, avaliar_animal_peso, avaliar_data } = req.body;
 
-  //get da pagina da lista de animais
-router.get('/listaAvaliacoes',ensureAuthenticated,(req,res)=>{
-  dbpool.getConnection(function(err,connection){
-    if(err){
+  // if errors > 1 falta verificar dados
+
+  //else
+  //mysql.insert.Animais
+  dbpool.getConnection(function (err, connection) {
+    if (err)
+      console.log('ERRO NO GET CONNECTION /avaliarAnimais/:id POST');
+
+    var sql = 'INSERT INTO AvaliarAnimais (avaliar_animal_id,avaliar_animal_peso,avaliar_data) VALUES (?,?,?)';
+    var campos = [avaliar_animal_id, avaliar_animal_peso, avaliar_data];
+
+    connection.query(sql, campos, function (err, rows) {
+      if (err) {
+        connection.release();
+        console.log('ERRO NA QUERY REGISTO AVALIAR ANIMAIS POST')
+      }
+      connection.release();
+      //no redirect mandamos uma mensagem de registo?
+      res.redirect('/listaAnimais');
+    });
+  });
+});
+
+//get da pagina da lista de animais
+router.get('/listaAvaliacoes', ensureAuthenticated, (req, res) => {
+  dbpool.getConnection(function (err, connection) {
+    if (err) {
       console.log('ERRO NO GET CONNECTION /listaAvaliacoes GET');
-      connection.release(); 
+      connection.release();
       //falta adicionar pagina padrao e erros 
     }
-    
+
     var sql = 'SELECT * FROM AvaliarAnimais';
 
-    connection.query(sql,function(err,rows){
-      if(err){
+    connection.query(sql, function (err, rows) {
+      if (err) {
         connection.release();
         console.log('ERRO NA QUERY Lista Avaliar ANIMAIS GET')
       }
-        connection.release();
-        //ou return?
-        res.render('listaAvaliacoes',{
-            listaAvaliacoes: rows
-        });
+      connection.release();
+      //ou return?
+      res.render('listaAvaliacoes', {
+        listaAvaliacoes: rows
+      });
     });
-});
+  });
 });
 
 
-router.get('/Alterar/:id',ensureAuthenticated,(req,res)=>{
-  dbpool.getConnection(function(err,connection){
-    if(err){
+router.get('/Alterar/:id', ensureAuthenticated, (req, res) => {
+  dbpool.getConnection(function (err, connection) {
+    if (err) {
       console.log('ERRO NO GET CONNECTION /Alterar/ID GET');
       connection.release();
       //falta adicionar pagina padrao e erros
@@ -159,43 +159,43 @@ router.get('/Alterar/:id',ensureAuthenticated,(req,res)=>{
 
     var sql = 'SELECT * FROM Animais WHERE animal_id=?';
 
-    connection.query(sql,[req.params.id],function(err,rows,fields){
-    if(err){
+    connection.query(sql, [req.params.id], function (err, rows, fields) {
+      if (err) {
+        connection.release();
+        console.log('ERRO NA QUERY LISTA ANIMAIS ID GET');
+      }
       connection.release();
-      console.log('ERRO NA QUERY LISTA ANIMAIS ID GET');
-    }
-      connection.release();
-      res.render('alterarAnimal',{
-                animal: rows[0]
+      res.render('alterarAnimal', {
+        animal: rows[0]
       });
     });
   });
 });
 
-router.post('/Alterar', ensureAuthenticated, (req,res)=>{
-  const { animal_id,animal_nome,animal_raca,animal_adoptado,animal_data_nasc } = req.body;
-  
+router.post('/Alterar', ensureAuthenticated, (req, res) => {
+  const { animal_id, animal_nome, animal_raca, animal_adoptado, animal_data_nasc } = req.body;
+
   // if errors > 1 falta verificar dados
 
   //else
-    //mysql.insert.Animais
-    dbpool.getConnection(function(err,connection){
-      if(err)
-        console.log('ERRO NO GET CONNECTION /ALTERAR/:id POST');
-      animal_adoptado => animal_adoptado == 1 ? true : false;
-      var sql = 'UPDATE Animais SET animal_nome = ?, animal_raca = ?, animal_adoptado=?,animal_data_nasc=? WHERE animal_id=?';
-      var campos = [animal_nome,animal_raca,animal_adoptado,animal_data_nasc,animal_id];
-  
-      connection.query(sql,campos,function(err,rows){
-        if(err){
-          connection.release();
-          console.log('ERRO NA QUERY ALTERAR ANIMAIS POST');
-        }
-          connection.release();
-          //no redirect mandamos uma mensagem de registo?
-          res.redirect('/listaAnimais');
-      });
+  //mysql.insert.Animais
+  dbpool.getConnection(function (err, connection) {
+    if (err)
+      console.log('ERRO NO GET CONNECTION /ALTERAR/:id POST');
+    animal_adoptado => animal_adoptado == 1 ? true : false;
+    var sql = 'UPDATE Animais SET animal_nome = ?, animal_raca = ?, animal_adoptado=?,animal_data_nasc=? WHERE animal_id=?';
+    var campos = [animal_nome, animal_raca, animal_adoptado, animal_data_nasc, animal_id];
+
+    connection.query(sql, campos, function (err, rows) {
+      if (err) {
+        connection.release();
+        console.log('ERRO NA QUERY ALTERAR ANIMAIS POST');
+      }
+      connection.release();
+      //no redirect mandamos uma mensagem de registo?
+      res.redirect('/listaAnimais');
+    });
   });
-  });
+});
 
 module.exports = router;
